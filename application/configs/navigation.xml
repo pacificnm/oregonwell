@@ -1,0 +1,208 @@
+<configdata>
+	<navigation>
+
+		<index_index>
+			<label>Home</label>
+			<module>default</module>
+			<controller>index</controller>
+			<action>index</action>
+			<resource>2</resource>
+			<visible>true</visible>
+			<pages>
+				<page_content_it-service>
+					<label>Comercial Services</label>
+					<title>Comercial Services provided by Pacific Network Management in the Grants Pass Area</title>
+					<module>page</module>
+					<controller>content</controller>
+					<action>index</action>
+					<params>
+						<name>it-service</name>
+					</params>
+					<resource>2</resource>
+					<visible>true</visible>
+					<reset_params>true</reset_params>
+					<pages>
+						<page_content_managed-it-services>
+							<label>Managed IT Services</label>
+							<title>Managed IT Services provided by Pacific Network Management in the Grants Pass Area</title>
+							<module>page</module>
+							<controller>content</controller>
+							<action>index</action>
+							<params>
+								<name>managed-it-services</name>
+							</params>
+							<resource>2</resource>
+							<visible>true</visible>
+						</page_content_managed-it-services>
+						<page_content_network-support>
+							<label>Network Support</label>
+							<title>Network Support services provided by Pacific Network Management in the Grants Pass Area</title>
+							<module>page</module>
+							<controller>content</controller>
+							<action>index</action>
+							<params>
+								<name>network-support</name>
+							</params>
+							<resource>2</resource>
+							<visible>true</visible>
+						</page_content_network-support>
+						<page_content_hosted-exchange>
+							<label>Microsoft Exchange</label>
+							<title>Microsoft Exchange services provided by Pacific Network Management in the Grants Pass Area</title>
+							<module>page</module>
+							<controller>content</controller>
+							<action>index</action>
+							<params>
+								<name>hosted-exchange</name>
+							</params>
+							<resource>2</resource>
+							<visible>true</visible>
+						</page_content_hosted-exchange>
+						<page_content_network-security>
+							<label>Network Security</label>
+							<title>Network Security services provided by Pacific Network Management in the Grants Pass Area</title>
+							<module>page</module>
+							<controller>content</controller>
+							<action>index</action>
+							<params>
+								<name>network-security</name>
+							</params>
+							<resource>2</resource>
+							<visible>true</visible>
+						</page_content_network-security>
+						<page_content_online-backup>
+							<label>Backup Solutions</label>
+							<title>Backup Solutions services provided by Pacific Network Management in the Grants Pass Area</title>
+							<module>page</module>
+							<controller>content</controller>
+							<action>index</action>
+							<params>
+								<name>online-backup</name>
+							</params>
+							<resource>2</resource>
+							<visible>true</visible>
+						</page_content_online-backup>
+						<page_content_data-recovery>
+							<label>Data Recovery</label>
+							<title>Data Recovery services provided by Pacific Network Management in the Grants Pass Area</title>
+							<module>page</module>
+							<controller>content</controller>
+							<action>index</action>
+							<params>
+								<name>data-recovery</name>
+							</params>
+							<resource>2</resource>
+							<visible>true</visible>
+						</page_content_data-recovery>
+					</pages>
+				</page_content_it-service>
+				
+				
+				
+				<page_content_residential>
+					<label>Residential Services</label>
+					<module>page</module>
+					<controller>content</controller>
+					<action>index</action>
+					<params>
+						<name>residential-service</name>
+					</params>
+					<resource>2</resource>
+					<visible>true</visible>
+					<pages>
+						<page_content_onsite-support>
+							<label>Onsite Support</label>
+							<title>OnSite support services provided by Pacific Network Management in the Grants Pass Area</title>
+							<module>page</module>
+							<controller>content</controller>
+							<action>index</action>
+							<params>
+								<name>onsite-support</name>
+							</params>
+							<resource>2</resource>
+							<visible>true</visible>
+						</page_content_onsite-support>
+						<page_content_virus-removal>
+							<label>Virus Removal</label>
+							<title>Virus Removal services provided by Pacific Network Management in the Grants Pass Area</title>
+							<module>page</module>
+							<controller>content</controller>
+							<action>index</action>
+							<params>
+								<name>virus-removal</name>
+							</params>
+							<resource>2</resource>
+							<visible>true</visible>
+						</page_content_virus-removal>
+						
+						<page_content_wireless-networking>
+							<label>Wireless Networking</label>
+							<title>Wireless Networking services provided by Pacific Network Management in the Grants Pass Area</title>
+							<module>page</module>
+							<controller>content</controller>
+							<action>index</action>
+							<params>
+								<name>wireless-networking</name>
+							</params>
+							<resource>2</resource>
+							<visible>true</visible>
+						</page_content_wireless-networking>
+						<page_content_desktop-installations>
+							<label>Desktop Instalation</label>
+							<title>Desktop Instalation services provided by Pacific Network Management in the Grants Pass Area</title>
+							<module>page</module>
+							<controller>content</controller>
+							<action>index</action>
+							<params>
+								<name>desktop-installations</name>
+							</params>
+							<resource>2</resource>
+							<visible>true</visible>
+						</page_content_desktop-installations>
+						
+						<page_content_internet-connection>
+							<label>Internet Troubleshooting</label>
+							<title>Internet Troubleshooting services provided by Pacific Network Management in the Grants Pass Area</title>
+							<module>page</module>
+							<controller>content</controller>
+							<action>index</action>
+							<params>
+								<name>internet-connection</name>
+							</params>
+							<resource>2</resource>
+							<visible>true</visible>
+						</page_content_internet-connection>
+						
+					</pages>
+				</page_content_residential>
+				
+				<page_content_about>
+					<label>About us</label>
+					<module>page</module>
+					<controller>content</controller>
+					<action>index</action>
+					<params>
+						<name>about</name>
+					</params>
+					<resource>2</resource>
+					<visible>true</visible>
+				</page_content_about>
+				
+				<page_auth_signin_index>
+					<label>Client Portal</label>
+					<module>auth</module>
+					<controller>signin</controller>
+					<action>index</action>
+					<resource>2</resource>
+					<visible>true</visible>
+				</page_auth_signin_index>
+			</pages>
+		</index_index>
+
+
+
+
+
+	</navigation>
+</configdata>
+		

@@ -1,0 +1,75 @@
+2014-07-13T08:37:02-07:00 INFO (6): Faled to get data back from BLM for well 239
+2014-07-13T18:37:12-07:00 INFO (6): [2130] Failed to get data back from BLM for well
+2014-07-13T19:00:48-07:00 INFO (6): [3397] Failed to get data back from BLM for well
+2014-07-13T19:06:59-07:00 INFO (6): [3727] Failed to get data back from BLM for well
+2014-07-13T19:23:02-07:00 INFO (6): [4625] Failed to get xml from BLM  for well
+2014-07-13T20:18:40-07:00 INFO (6): [7611] Failed to get xml from BLM  for well
+2014-07-13T20:19:40-07:00 INFO (6): [7612] Failed to get xml from BLM  for well
+2014-07-13T20:20:41-07:00 INFO (6): [7613] Failed to get xml from BLM  for well
+2014-07-13T20:21:41-07:00 INFO (6): [7614] Failed to get xml from BLM  for well
+2014-07-14T01:17:44-07:00 INFO (6): [11839] Failed to get xml from BLM Invalid Township,Range,Section... specified: OR,33,38,0,S,8,0,W,,NWNW,0 for well
+2014-07-14T02:19:01-07:00 INFO (6): [15557] Failed to get xml from BLM Unable to locate features using OR 33 400N 80W ENTIRE TOWNSHIP for well
+2014-07-14T02:33:09-07:00 INFO (6): [16722] Failed to get data back from BLM for well
+2014-07-14T02:47:04-07:00 INFO (6): [17692] Failed to get data back from BLM for well
+2014-07-14T02:47:34-07:00 INFO (6): [17721] Failed to get data back from BLM for well
+2014-07-14T02:47:34-07:00 INFO (6): [17722] Failed to get data back from BLM for well
+2014-07-14T02:48:53-07:00 INFO (6): [17854] Failed to get data back from BLM for well
+2014-07-14T02:59:24-07:00 INFO (6): [18667] Failed to get data back from BLM for well
+2014-07-14T03:37:31-07:00 INFO (6): [21186] Failed to get data back from BLM for well
+2014-07-14T03:43:51-07:00 INFO (6): [21587] Failed to get data back from BLM for well
+2014-07-14T03:44:03-07:00 INFO (6): [21598] Failed to get data back from BLM for well
+2014-07-14T03:44:03-07:00 INFO (6): stoping to many errors
+2014-07-14T04:14:55-07:00 INFO (6): [21873] Failed to get data back from BLM for well
+2014-07-14T05:03:31-07:00 INFO (6): [24656] Failed to get data back from BLM for well
+2014-07-14T05:05:51-07:00 INFO (6): [24761] Failed to look up extact addresss for well
+2014-07-14T05:05:52-07:00 INFO (6): [24762] Failed to look up extact addresss for well
+2014-07-14T05:05:53-07:00 INFO (6): [24763] Failed to look up extact addresss for well
+2014-07-14T05:05:54-07:00 INFO (6): [24764] Failed to look up extact addresss for well
+2014-07-14T05:05:56-07:00 INFO (6): [24765] Failed to look up extact addresss for well
+2014-07-14T05:05:57-07:00 INFO (6): [24766] Failed to look up extact addresss for well
+2014-07-14T05:11:51-07:00 INFO (6): [25029] Failed to get data back from BLM for well
+2014-07-14T05:26:13-07:00 INFO (6): [25781] Failed to get data back from BLM for well
+2014-07-14T05:31:51-07:00 INFO (6): [26072] Failed to get data back from BLM for well
+2014-07-14T05:31:51-07:00 INFO (6): stoping to many errors
+2014-07-14T06:21:18-07:00 INFO (6): [26073] Failed to get data back from BLM for well
+2014-07-14T06:26:17-07:00 INFO (6): [26348] Failed to look up extact addresss for well
+2014-07-14T06:29:12-07:00 INFO (6): [26489] Failed to get data back from BLM for well
+2014-07-14T06:39:09-07:00 INFO (6): [26995] Failed to get data back from BLM for well
+2014-07-14T06:39:20-07:00 INFO (6): [27006] Failed to get data back from BLM for well
+2014-07-14T06:41:58-07:00 INFO (6): [27137] Failed to get data back from BLM for well
+2014-07-14T06:42:06-07:00 INFO (6): [27143] Failed to get data back from BLM for well
+2014-07-14T06:42:12-07:00 INFO (6): [27149] Failed to get data back from BLM for well
+2014-07-14T06:42:58-07:00 INFO (6): [27189] Failed to get data back from BLM for well
+2014-07-14T06:43:18-07:00 INFO (6): [27207] Failed to get xml from BLM Invalid Township,Range,Section... specified: OR,33,8,0,S,40,0,E,,,0 for well
+2014-07-14T06:43:20-07:00 INFO (6): [27209] Failed to get xml from BLM Invalid Township,Range,Section... specified: OR,33,9,0,S,37,0,E,,,0 for well
+2014-07-14T06:43:34-07:00 INFO (6): [27221] Failed to get data back from BLM for well
+2014-07-14T06:48:20-07:00 INFO (6): [27489] Failed to get xml from BLM Invalid Township,Range,Section... specified: OR,33,8,0,S,39,0,E,,,0 for well
+2014-07-14T06:48:30-07:00 INFO (6): [27499] Failed to get xml from BLM Invalid Township,Range,Section... specified: OR,33,8,0,S,38,0,E,,,0 for well
+2014-07-14T06:49:34-07:00 INFO (6): [27558] Failed to get data back from BLM for well
+2014-07-14T06:50:08-07:00 INFO (6): [27587] Failed to get data back from BLM for well
+2014-07-14T06:51:02-07:00 INFO (6): [27632] Failed to get data back from BLM for well
+2014-07-14T06:54:16-07:00 INFO (6): [27797] Failed to get data back from BLM for well
+2014-07-14T07:09:53-07:00 INFO (6): [28601] Failed to get data back from BLM for well
+2014-07-14T07:18:22-07:00 INFO (6): [29019] Failed to get data back from BLM for well
+2014-07-14T07:20:12-07:00 INFO (6): [29133] Failed to get data back from BLM for well
+2014-07-14T07:24:12-07:00 INFO (6): [29349] Failed to get data back from BLM for well
+2014-07-14T07:27:29-07:00 INFO (6): [29524] Failed to get data back from BLM for well
+2014-07-14T07:27:47-07:00 INFO (6): [29543] Failed to get data back from BLM for well
+2014-07-14T08:09:36-07:00 INFO (6): [31858] Failed to get data back from BLM for well
+2014-07-14T08:20:19-07:00 INFO (6): [32401] Failed to get data back from BLM for well
+2014-07-14T08:21:47-07:00 INFO (6): [32471] Failed to look up extact addresss for well
+2014-07-14T08:27:55-07:00 INFO (6): [32782] Failed to get data back from BLM for well
+2014-07-14T09:51:10-07:00 INFO (6): [37136] Failed to get xml from BLM Invalid Township,Range,Section... specified: OR,33,13,0,S,5,0,W,,,0 for well
+2014-07-14T09:59:24-07:00 INFO (6): [37568] Failed to get xml from BLM Invalid Township,Range,Section... specified: OR,33,14,0,S,5,0,W,,,0 for well
+2014-07-14T09:59:25-07:00 INFO (6): [37569] Failed to get xml from BLM Invalid Township,Range,Section... specified: OR,33,14,0,S,5,0,W,,,0 for well
+2014-07-14T09:59:26-07:00 INFO (6): [37570] Failed to get xml from BLM Invalid Township,Range,Section... specified: OR,33,14,0,S,5,0,W,,,0 for well
+2014-07-14T09:59:28-07:00 INFO (6): [37572] Failed to get xml from BLM Invalid Township,Range,Section... specified: OR,33,14,0,S,5,0,W,,,0 for well
+2014-07-14T09:59:29-07:00 INFO (6): [37573] Failed to get xml from BLM Invalid Township,Range,Section... specified: OR,33,14,0,S,5,0,W,,,0 for well
+2014-07-14T09:59:29-07:00 INFO (6): [37574] Failed to get xml from BLM Invalid Township,Range,Section... specified: OR,33,14,0,S,5,0,W,,,0 for well
+2014-07-14T10:09:13-07:00 INFO (6): [38071] Failed to get xml from BLM Invalid Township,Range,Section... specified: OR,33,14,0,S,6,0,W,,,0 for well
+2014-07-14T10:10:27-07:00 INFO (6): [38137] Failed to get xml from BLM Invalid Township,Range,Section... specified: OR,33,14,0,S,6,0,W,,,0 for well
+2014-07-14T10:22:59-07:00 INFO (6): [38837] Failed to get data back from BLM for well
+2014-07-14T10:26:05-07:00 INFO (6): [39049] Failed to get data back from BLM for well
+2014-07-14T10:26:41-07:00 INFO (6): [39078] Failed to get data back from BLM for well
+2014-07-14T10:37:51-07:00 INFO (6): [39596] Failed to get data back from BLM for well
+2014-07-14T10:47:09-07:00 INFO (6): [40146] Failed to get data back from BLM for well

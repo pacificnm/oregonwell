@@ -1,0 +1,14 @@
+<div class="row">
+	<div class="col-md-3 col-lg-4">
+        <?php echo $this->Nav(); ?>
+    </div>
+	<div class="col-md-9 col-lg-8">
+	       <div class="alert alert-success">
+	           <?php if($this->directory):?>
+	               <?php echo $this->translate('The cache ' . $this->directory . ' has been cleared.')?>
+	           <?php else:?>
+	               <?php echo $this->translate('All caches have been cleared.')?>
+	           <?php endif;?>
+	       </div>
+	</div>
+</div>

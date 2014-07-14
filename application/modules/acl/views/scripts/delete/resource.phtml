@@ -1,0 +1,13 @@
+<div class="row">
+	<div class="col-md-3">
+		<?php echo $this->AclNav(); ?>
+	</div>
+	<div class="col-md-9">
+	    <div class="alert alert-danger">
+	       <?php echo $this->translate('Are you sure you want to delete the resource ')?>
+	       <?php echo $this->escape($this->resource->acl_resource_display)?>?
+	    </div>
+	     <br />
+	   <?php echo $this->form; ?>
+	</div>
+</div>

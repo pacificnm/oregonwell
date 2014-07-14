@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tmx version="1.4">
+	<header creationtoolversion="1.0.0" datatype="winres" segtype="sentence"
+           adminlang="en-us" srclang="de-at" o-tmf="abc"
+           creationtool="XYZTool" >
+    </header>
+    <body>
+		<tu tuid='Save'><tuv xml:lang="en"><seg>Save</seg></tuv></tu>
+		<tu tuid='Delete'><tuv xml:lang="en"><seg>Delete</seg></tuv></tu>
+  		<tu tuid='Update'><tuv xml:lang="en"><seg>Update</seg></tuv></tu>
+  		
+  		
+	</body>
+</tmx>

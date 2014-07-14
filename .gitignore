@@ -1,0 +1,9 @@
+.buildpath
+ .htaccess
+ .project
+ .settings/
+ /applicaiton/configs/
+ /application/log
+ /application/cache
+ /applicaiton/tmp
+ /applicaiton/configs/devconfig.xml

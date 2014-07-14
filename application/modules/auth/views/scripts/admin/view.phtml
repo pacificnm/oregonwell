@@ -1,0 +1,60 @@
+<div class="row">
+	<div class="col-md-3">
+        <?php echo $this->AuthNav(); ?>
+    </div>
+	<div class="col-md-9">
+	   <div class="row">
+	       <div class="col-md-2">
+	           <b>Name</b>
+	       </div>
+	       <div class="col-md-10">
+	           <?php  echo $this->account->name;?>
+	       </div>
+	   </div>
+	   <div class="row">
+	       <div class="col-md-2">
+	           <b>Username</b>
+	       </div>
+	       <div class="col-md-10">
+	           <?php  echo $this->account->username;?>
+	       </div>
+	   </div>
+	   <div class="row">
+	       <div class="col-md-2">
+	           <b>Email</b>
+	       </div>
+	       <div class="col-md-10">
+	           <?php  echo $this->account->email;?>
+	       </div>
+	   </div>
+	   <div class="row">
+	       <div class="col-md-2">
+	           <b>Password</b>
+	       </div>
+	       <div class="col-md-10">
+	           *********
+	       </div>
+	   </div>
+	   <div class="row">
+	       <div class="col-md-2">
+	           <b>Role</b>
+	       </div>
+	       <div class="col-md-10">
+	           <?php echo $this->account->acl_role_display;?>
+	       </div>
+	   </div>
+	   <div class="row">
+	       <div class="col-md-12">
+	           <br />
+	       </div>
+	   </div>
+	   <div class="row">
+	       <div class="col-md-3">
+	           <a href="<?php echo $this->url(array('module' => 'auth', 'controller' => 'admin', 'action' => 'update', 'auth_id' => $this->account->auth_id)); ?>" type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Update Account"><i class="glyphicon glyphicon-pencil"></i></a>
+               <a href="<?php echo $this->url(array('module' => 'auth', 'controller' => 'admin', 'action' => 'delete', 'auth_id' => $this->account->auth_id)); ?>" type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete Account"><i class="glyphicon glyphicon-remove"></i></a>
+		          
+	       </div>
+	       
+	   </div>
+	</div>
+</div>

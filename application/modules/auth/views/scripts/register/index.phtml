@@ -1,0 +1,317 @@
+<script type="text/javascript">
+$(document).ready(function() {
+
+	// force account check and show cc card
+	//$("#creditCard").show();
+	//$('input[name="account[]"][value="basic"]').attr('checked', true);
+
+	
+	
+    $('#attributeForm')
+         .bootstrapValidator({
+        	 feedbackIcons: {
+                 valid: 'glyphicon glyphicon-ok',
+                 invalid: 'glyphicon glyphicon-remove',
+                 validating: 'glyphicon glyphicon-refresh'
+             },
+             fields: {
+            	 firstName: {
+            		 validators: {
+            			 notEmpty: {
+                             message: 'The first name is required and cannot be empty'
+                         }
+            		 }
+            	 },
+            	 lastName: {
+            		 validators: {
+            			 notEmpty: {
+                             message: 'The last name is required and cannot be empty'
+                         }
+            		 }
+            	 },
+
+            	 email: {
+            		 validators: {
+            			 notEmpty: {
+                             message: 'The email address is required and cannot be empty'
+                         },
+                         emailAddress: {
+                             message: 'The value is not a valid email address'
+                         }         			
+                     }
+            	 },
+            	 password: {
+            		 validators: {
+            			 notEmpty: {
+                             message: 'The password is required and cannot be empty'
+                         },
+                         identical: {
+                             field: 'confirmPassword',
+                             message: 'The password and its confirm are not the same'
+                         }
+            		 }
+            	 },
+            	 confirmPassword: {
+                     validators: {
+                         identical: {
+                             field: 'password',
+                             message: 'The password and its confirm are not the same'
+                         }
+                     }
+                 },
+                 street: {
+                	validators: {
+                		notEmpty: {
+                            message: 'The street address is required and cannot be empty'
+                        }
+                	}
+                 },
+                 city: {
+                	 validators: {
+                 		notEmpty: {
+                             message: 'The city is required and cannot be empty'
+                         }
+                 	}
+                 },
+                 state: {
+                	 validators: {
+                 		notEmpty: {
+                             message: 'The state is required and cannot be empty'
+                         }
+                 	}
+                 },
+            	 postcode: {
+                     validators: {
+                    	 notEmpty: {
+                             message: 'The zip code is required and cannot be empty'
+                         },
+                         zipCode: {
+                             country: 'US',
+                             message: 'The value is not valid zipcode'
+                         }
+                     }
+                 },
+                 phone: {
+                     validators: {
+                    	 notEmpty: {
+                             message: 'The Phone Number is required and cannot be empty'
+                         },
+                         phone: {
+                        	 country: 'US',
+                        	 message: 'Phone is not a valid phone number ex. XXX-XXX-XXXX'
+                         }
+                     }
+                 },
+                 
+            	 ccNumber: {
+                     validators: {
+                         creditCard: {
+                             message: 'The credit card number is not valid'
+                         },
+                         notEmpty: {
+                             message: 'The Credit Card Number is required'
+                         }
+                     }
+                 },
+                 ccName: {
+                	 validators: {
+                		 notEmpty: {
+                             message: 'The Name On Card is required'
+                         }
+                	 }
+                 },
+                 ccCvv: {
+                	 validators: {
+                		 notEmpty: {
+                             message: 'The CVV number is required'
+                         },
+                         cvv: {
+                             creditCardField: 'ccNumber',
+                             message: 'The CVV number is not valid'
+                         }
+                	 }
+                 }
+             }
+         })
+    
+        .bootstrapValidator()
+            .find('input[data-toggle]')
+            .on('click', function() {
+                var $target = $($(this).attr('data-toggle'));
+                
+                var accountType = $(this).val();
+                if(accountType == 'basic' || accountType == 'advanced') {
+                    $("#creditCard").show();
+                } else {
+                	$("#creditCard").hide();
+                }
+                
+                
+               // $target.toggle();
+                
+                if (!$target.is(':visible')) {
+                    // Enable the submit buttons in case additional fields are not valid
+                    $('#attributeForm').data('bootstrapValidator').disableSubmitButtons(false);
+                }
+            });
+});
+</script>
+<div class="row">
+	<div class="col-md-4">
+		<div class="thumbnail">
+			<div class="caption">
+				<h3><i class="fa fa-university fa-fw text-primary"></i> Free Account</h3>
+				<p>The Free basic account allows you to browse and view Well information.
+				    <br /><br /><br />
+				
+				</p>
+                 <h4 class="text-primary">Free <a href="" class="pull-right small">More Info</a></h4>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+	   <div class="thumbnail">
+			<div class="caption">
+				<h3><i class="fa fa-university fa-fw text-info"></i> Basic Business</h3>
+				<p>Basic Business gives you all the features of the Free Account plus the ability to
+				 save wells in your profile, generate and print reports. View Driller Infromation. View State Well Reports.</p>
+                 <h4 class="text-primary">$49.99 per year <a href="" class="pull-right small">More Info</a></h4>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+	   <div class="thumbnail">
+			<div class="caption">
+				<h3><i class="fa fa-university fa-fw text-warning"></i> Advanced Business</h3>
+				<p>Advanced Business gives all the features of the Basic Business and includes 
+				    full access to our API that allows you to provide well information on your website and more. 
+				
+				</p>
+                <h4 class="text-primary">$99.99 per year <a href="" class="pull-right small">More Info</a></h4>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="panel panel-default">
+	<div class="panel-body">
+
+
+		<form id="attributeForm" method="post" class="form-horizontal"
+			data-bv-message="This value is not valid"
+			data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+			data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+			data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+			
+			<h4>Personal Information</h4>
+			<div class="form-group">
+				<?php echo $this->form->getElement('firstName');?>
+				<?php echo $this->form->getElement('lastName');?>
+			</div>
+			<div class="form-group">
+				<?php echo $this->form->getElement('email'); ?>
+			</div>
+			<div class="form-group">
+				<?php echo $this->form->getElement('password'); ?>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-3 control-label">Retype password</label>
+				<div class="col-lg-5">
+					<input type="password" class="form-control" name="confirmPassword"/>
+				</div>
+			</div>
+			
+            <h4>Contact Information</h4>
+			<div class="form-group">
+				<?php echo $this->form->getElement('street'); ?>
+			</div>
+			<div class="form-group">
+				<?php echo $this->form->getElement('city');?>
+			</div>
+			<div class="form-group">
+				<?php echo $this->form->getElement('state'); ?>
+			</div>
+
+			<div class="form-group">
+				<?php echo $this->form->getElement('postcode'); ?>
+			</div>
+			<div class="form-group">
+				<?php echo $this->form->getElement('phone'); ?>
+			</div>
+			
+			
+			 <div class="form-group">
+        <label class="col-lg-3 control-label">Account Type</label>
+        <div class="col-lg-5">
+            
+            <div class="radio">
+                <label>
+                    <input type="radio" name="account[]" value="free" data-toggle="#creditCard"
+                        data-bv-message="Please specify at least one account type"
+                        data-bv-notempty="true"
+                    /><i class="fa fa-university fa-fw text-primary"></i> Free Account
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="account[]" value="basic" data-toggle="#creditCard"/><i class="fa fa-university fa-fw text-info"></i> Basic Business $49.99 per year
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="account[]" value="advanced" data-toggle="#creditCard"/><i class="fa fa-university fa-fw text-warning"></i>  Advanced Business $99.99 per year
+                </label>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div id="creditCard" style="display: none;">
+        <h4>Billing Information</h4>
+        <div class="form-group">
+            <?php echo $this->form->getElement('ccName');?>
+        </div>
+
+        <div class="form-group">
+            <?php echo $this->form->getElement('ccNumber'); ?>
+            <?php echo $this->form->getElement('ccCvv');?>
+        </div>
+        
+         <div class="form-group">
+            <?php echo $this->form->getElement('cvvMonth'); ?>
+            <?php echo $this->form->getElement('cvvYear')?>
+        </div>     
+    </div>
+   <div class="form-group">
+        <label class="col-lg-3 control-label"></label>
+        <div class="col-lg-5">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="tos" value="english"
+                        data-bv-message="You must agree to the Terms Of Service"
+                        data-bv-notempty="true" /> I Agree to the tearms of service
+                </label>
+            </div>
+         </div>
+   </div>
+   
+
+			<div class="form-group">
+				<div class="col-lg-3"></div>
+				<div class="col-lg-5">
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-body">
+        <h4>Tearms And Conditions</h4>	
+	
+	</div>
+</div>
+
+

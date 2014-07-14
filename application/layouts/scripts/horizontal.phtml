@@ -1,0 +1,67 @@
+<nav class="navbar navbar-default  navbar-fixed-top" role="navigation">
+	<!-- Header -->
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse"
+			data-target="#bs-example-navbar-collapse-1">
+			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
+			<span class="icon-bar"></span> <span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="/"> <i class="fa fa-cloud-upload"></i>
+			Oregon Well
+		</a>
+	</div>
+
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<ul class="nav navbar-nav">
+        <li><a href="/well/browse">Wells</a></li>
+        <li><a href="/driller/browse">Drillers</a></li>
+      <?php if ($this->GetAcl()->isAllowed($this->GetIdentity()->acl_role_id, 1)): ?>
+        <li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown"><i class="caret"></i> <span>Admin</span></a>
+				<ul class="dropdown-menu" id="page_5">
+					<li><a href="/admin/index">Home</a></li>
+					<li><a href="/employee/index/admin">Employees</a></li>
+					<li><a href="/report/index">Reports</a></li>
+					<li><a href="/vendor/index/index">Vendors & Bills</a></li>
+					<li class="divider"></li>
+					<li><a href="/auth/admin/index">Accounts</a></li>
+					<li class="divider"></li>
+					<li><a href="/acl/index/index">ACL</a></li>
+					<li><a href="/page/index/index">Pages</a></li>
+					<li><a href="/cache/index/index">Cache</a></li>
+					<li><a href="/config/index/index">Config</a></li>
+					<li><a href="/search/admin/index">Search</a></li>
+					<li><a href="/log/index/index">Logs</a></li>
+					<li><a href="/navigation/index/index">Navigation</a></li>
+				</ul></li>
+      <?php endif; ?>
+
+      
+    </ul>
+
+
+		<ul class="nav navbar-nav navbar-right">
+
+			<li class="dropdown"><a href="#" role="button"
+				class="dropdown-toggle" data-toggle="dropdown"> <span
+					class="glyphicon glyphicon-user"></span>
+					
+            <?php if ($this->GetIdentity()->auth_type != 'Guest'): ?>
+                <?php echo $this->GetIdentity()->name; ?> 
+            <?php else:?>         
+            Guest 
+          <?php endif; ?>
+          <i class="caret"></i>&nbsp;&nbsp;
+			</a>
+				<ul class="dropdown-menu">
+          <?php if ($this->GetIdentity()->auth_type == 'Guest'): ?>
+            <li><a tabindex="-1" href="/auth/signin">Sign In</a></li>
+          <?php else: ?>
+            <li><a href="/auth/view/index">My Account</a></li>
+					<li><a href="/auth/signout">Sign Out</a></li>
+          <?php endif; ?>
+        </ul></li>
+		</ul>
+	</div>
+</nav>
+

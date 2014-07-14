@@ -1,0 +1,620 @@
+<style>
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+</style>
+<script>
+$(document).ready(function() {
+
+	
+    var dt = $('#wellData').dataTable({
+    	
+    	"dom": 'rt<"pull-left"i><"pull-right"p>',
+        "ordering": false,
+        "bSort":    false,       // Disable sorting
+        "bProcessing": false,
+        "bServerSide": true,
+        "bFilter": false,
+        "iDisplayLength": 10,
+        "sAjaxSource": "/well/json/browse",
+        "fnServerParams": function ( aoData ) {
+        		var fc = [];
+                $('#filterCounty input:checked').each(function(i, ele) { fc.push($(ele).val());});
+                aoData.push( { name: "filterCounty", value: fc} );
+
+                var fc = [];
+                $('#filterType input:checked').each(function(i, ele) { fc.push($(ele).val());});
+                aoData.push( { name: "filterType", value: fc} );
+
+                var fc = [];
+                $('#filterUse input:checked').each(function(i, ele) { fc.push($(ele).val());});
+                aoData.push( { name: "filterUse", value: fc} );
+
+                
+                
+                aoData.push( { name: "filterText", value: $("#filterText").val()} );
+
+        },
+        
+        "columns": [
+            { "mData": "wl_county_code" },
+            { "mData": "name_first" },
+            { "mData": "street" },
+            { "mData": "completed_depth" },
+            { "mData": "max_yield" },
+            { "mData": "complete_date" },
+           //{ "mData": "id" },
+        ],
+        
+        "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+        	 var id = aData[0];
+
+        	 var label = aData.wl_county_code;
+        	 label = '<a href="/well/view/index/id/'+aData.id+'"><strong>'+getCounty(label)+'</strong></a>';
+
+        	 // name
+        	 var name = aData.name_first + " " + aData.name_last;
+
+        	 // address
+        	 var street = aData.street_of_well;
+        	 
+        	 var address = street + " " + aData.city_of_well + ", OR " + aData.zip_of_well;
+        	 var depth = aData.completed_depth + " feet";
+        	 var yield = aData.max_yield + " gpm";
+        	 var date = aData.complete_date;  
+        	 var link = "http://apps.wrd.state.or.us/apps/misc/vault/vault.aspx?wl_county_code="+aData.wl_county_code+"&wl_nbr=" + aData.wl_nbr
+
+
+             
+      	      
+        	 //var buttonsTxt = '<a href="#" class="btn btn-xs btn-primary" id="addToFavoriteBtn" data-well-id="'+aData.id+'" data-toggle="modal" data-target="#addFavorites" title="Add To Favorites"><i class="fa fa-star-o fa-fw"></i></a> ';
+        	 //buttonsTxt = buttonsTxt + '<a href="#" class="btn btn-xs btn-primary" data-well-id="'+aData.id+'" data-toggle="modal" data-target="#apiInfo" title="View API Information"><i class="fa fa-exchange fa-fw"></i></a> ';
+        	 //buttonsTxt = buttonsTxt + '<a href="#" class="btn btn-xs btn-primary" data-well-id="'+aData.id+'" data-toggle="modal" data-target="#addComment" title="Leave A Comment"><i class="fa  fa-comment-o fw"></i></a> ';
+        	 //buttonsTxt = buttonsTxt + '<a href="#" class="btn btn-xs btn-primary" data-well-id="'+aData.id+'" title="Print Report" data-toggle="modal" data-target="#printReport"><i class="fa fa-print fa-fw"></i></a> ';
+        	 //buttonsTxt = buttonsTxt + '<a href="'+link+'" target="new" class="btn btn-xs btn-primary" data-well-id="'+aData.id+'" title="View State Report"><i class="fa fa-file-pdf-o fa-fw"></i></a> ';
+        	 //buttonsTxt = buttonsTxt + '<a href="#" class="btn btn-xs btn-primary" title="View Driller Information" data-well-id="'+aData.id+'" data-toggle="modal" data-target="#viewDriller"><i class="fa fa-wrench fa-fw"></i></a>';
+        	 $('td:eq(1)', nRow).attr("nowrap", "true");
+
+        	 $('td:eq(6)', nRow).attr("class","text-right");
+        	 $('td:eq(0)', nRow).html(label);
+        	 $('td:eq(1)', nRow).html(name);
+        	 $('td:eq(2)', nRow).html(address);
+        	 $('td:eq(3)', nRow).html(depth);
+        	 $('td:eq(4)', nRow).html(yield);
+        	 $('td:eq(5)', nRow).html(date);
+        	// $('td:eq(6)', nRow).html(buttonsTxt);
+        	 return nRow;
+        },
+        
+        
+    });
+
+   
+
+       $("#alertInfoBox").hide();
+       $("#filterInfoTxt").empty();
+    
+        $('#filterCounty input').click(function() {
+        var val = $(this).val();       
+        if (val == 0) {
+            $('#filterCounty input').prop('checked', false);
+            $(this).prop('checked', true);
+            $("#filterInfoTxt").empty();
+            // remove frome array
+            $("#filterInfoTxt").html('');
+            
+        } else {
+        	 $("#filterInfoTxt").html(" | Country : " + getCounty(val)+ $("#filterInfoTxt").text());
+        	 $("#alertInfoBox").show();
+             $('#filterCounty input[value=0]').prop('checked', false);
+           
+            
+            
+        }
+        dt._fnAjaxUpdate();
+    });
+
+    $('#filterType input').click(function() {
+        var val = $(this).val();
+        if (val == 0) {
+            $('#filterType input').prop('checked', false);
+            $(this).prop('checked', true);
+            $("#filterInfoTxt").empty();
+            $("#filterInfoTxt").html('');
+           
+            
+        } else {
+            $("#filterInfoTxt").html(" | Type : " + getLogType(val)+ $("#filterInfoTxt").text()); 
+            $("#alertInfoBox").show(); 
+            $('#filterType input[value=0]').prop('checked', false);
+        }
+        dt._fnAjaxUpdate();
+    });
+
+    $('#filterUse input').click(function() {
+        var val = $(this).val();
+        if (val == 0) {
+            $('#filterUse input').prop('checked', false);
+            $(this).prop('checked', true);
+            
+            $("#filterInfoTxt").text().replace(" | Use : " + getUseDisplay(val), ""); 
+           
+        } else {
+        	$("#filterInfoTxt").html(" | Use : " + getUseDisplay(val)+ $("#filterInfoTxt").text()); 
+            $("#alertInfoBox").show(); 
+            
+            $('#filterUse input[value=0]').prop('checked', false);
+           
+            
+        }
+        dt._fnAjaxUpdate();
+    });
+
+    $("#filterTextBtn").click(function() {
+
+        
+    	
+		dt._fnAjaxUpdate();
+	});
+
+    $('#addFavorites').on('show.bs.modal', function () {
+    	 var wellId = $(this).attr("data-well-id");
+    	 console.log(wellId);
+    })
+
+	$('#clearBtn').click(function () {
+	    $("#filterText").val('');
+	    $('#filterCounty input').prop('checked', false);
+	    dt._fnAjaxUpdate();
+	});
+});
+
+
+function getUseDisplay(use) {
+
+	switch(use) {
+	case "use_domestic" : val = "Domestic"; break;
+	case"use_irrigation" : val = "Irrigation"; break;
+	case "use_community" : val = "Community"; break;
+	case "use_livestock" : val = "Livestock"; break;
+	case "use_industrial" : val = "Industrial"; break;
+	case  "use_injection" : val = "Injection"; break;
+	case  "use_thermal" : val = "Geo Thermal"; break;
+	case  "use_dewatering" : val = "De-Watering"; break;
+	case  "use_piezometer" : val = "Piezometer"; break;
+    case  "use_other" : val = "Other"; break;					
+	}
+	return val;
+}
+
+
+function getLogType(type) {
+    switch(type) {
+	case "W": val = "Water Well"; break;
+	case "M": val = "Monitoring Well"; break;
+	case "G": val = "Geotechnical Hole"; break;
+    }
+	return val;
+}
+
+function getCounty(county) {
+
+	switch(county) {
+	case "bake": val = "Baker"; break;
+	case "bent": val = "Benton"; break;
+	case "clac": val = "Clackamas"; break;
+	case "clat": val = "Clatsop"; break;
+	case "colu": val = "Columbia"; break;
+	case "coos": val = "Coos"; break;
+	case "croo": val = "Crook"; break;
+	case "curr": val = "Curry"; break;
+	case "desc": val = "Deschutes"; break;
+	case "doug": val = "Douglas"; break;
+	case "gill": val = "Gilliam"; break;
+	case "gran": val = "Grant"; break;
+	case "harn": val = "Harney"; break;
+	case "hood": val = "Hood river"; break;
+	case "jack": val = "Jackson"; break;
+	case "jeff": val = "Jefferson"; break;
+	case "jose": val = "Josephine"; break;
+	case "klam": val = "Klamath"; break;
+	case "lake": val = "Lake"; break;
+	case "lane": val = "Lane"; break;
+	case "linc": val = "Lincoln"; break;
+	case "linn": val = "Linn"; break;
+	case "malh": val = "Malheur"; break;
+	case "mari": val = "Marion"; break;
+	case "morr": val = "Morrow"; break;
+	case "mult": val = "Multnomah"; break;
+	case "polk": val = "Polk"; break;
+	case "sher": val = "Sherman"; break;
+	case "till": val = "Tillamook"; break;
+	case "umat": val = "Umatilla"; break;
+	case "unio": val = "Union"; break;
+	case "wall": val = "Wallowa"; break;
+	case "wasc": val = "Wasco"; break;
+	case "wash": val = "Washington"; break;
+	case "whee": val = "Wheeler"; break;
+	case "yamh": val = "Yamhill"; break;
+	}
+
+	return val;
+}
+</script>
+<?php echo $this->wellNav();?>
+
+<div class="panel panel-default">
+        <div class="panel-body">
+
+        <div class="alert alert-info" id="alertInfoBox">The folowing filters are enabled <span id="filterInfoTxt"></span> </div>
+        <section id="filterBar">
+			<div class="well well-sm">
+
+				<div class="col-md-5">
+				    <strong>Filter Results </strong>
+					<div class="btn-group">
+                        
+						<button type="button" class="btn btn-default dropdown-toggle"
+							data-toggle="dropdown">
+							County <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu scrollable-menu" role="menu" id="filterCounty">
+						    <li><a><label><input checked="checked" type="checkbox" value="0"> No Filter</label></a></li>
+            				<li class="divider"></li>
+							<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="bake">baker</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="bent">benton</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="clac">clackamas</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="clat">clatsop</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="colu">columbia</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="coos">coos</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="croo">crook</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="curr">curry</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="desc">deschutes</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="doug">douglas</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="gill">gilliam</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="gran">grant</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="harn">harney</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="hood">hood river</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="jack">jackson</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="jeff">jefferson</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="jose">josephine</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="klam">klamath</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="lake">lake</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="lane">lane</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="linc">lincoln</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="linn">linn</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="malh">malheur</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="mari">marion</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="morr">morrow</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="mult">multnomah</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="polk">polk</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="sher">sherman</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="till">tillamook</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="umat">umatilla</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="unio">union</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="wall">wallowa</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="wasc">wasco</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="wash">washington</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="whee">wheeler</label></div></li>
+                        	<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="yamh">yamHILL</label></div></li>
+						
+						
+						</ul>
+					</div>
+					<div class="btn-group">
+						<button type="button" class="btn btn-default dropdown-toggle"
+							data-toggle="dropdown">
+							Log Type <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu" id="filterType">
+						    <li><a><label><input checked="checked" type="checkbox" value="0"> No Filter</label></a></li>
+            				<li class="divider"></li>
+							<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="W">Water Well</label></div></li>
+							<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="M">Monitoring Well</label></div></li>
+							<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="G">Geotechnical Hole</label></div></li>
+						</ul>
+					</div>
+					<div class="btn-group">
+						<button type="button" class="btn btn-default dropdown-toggle"
+							data-toggle="dropdown">
+							Use <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu" id="filterUse">
+						    <li><a><label><input checked="checked" type="checkbox" value="0"> No Filter</label></a></li>
+            				<li class="divider"></li>
+							<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="use_domestic">Domestic</label></div></li>
+							<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="use_irrigation">Irrigation</label></div></li>
+							<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="use_community">Community</label></div></li>
+							<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="use_livestock">Livestock</label></div></li>
+							<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="use_industrial">Industrial</label></div></li>
+							<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="use_injection">Injection</label></div></li>
+							<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="use_thermal">Geo Thermal</label></div></li>
+							<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="use_dewatering">De-Watering</label></div></li>
+							<li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="use_piezometer">Piezometer</label></div></li>
+						    <li><div class="checkbox" style="padding-left:8px"><label><input type="checkbox" value="use_other">Other</label></div></li>					
+							
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-7">
+					<div class="input-group pull-right">
+						<input type="text" class="form-control"
+							placeholder="Select a County then enter the street" id="filterText"> <span
+							class="input-group-btn">
+							<button class="btn btn-default" id="filterTextBtn" type="button">Search</button>
+							<button class="btn btn-default" id="clearBtn" type="button">Clear</button>
+						</span>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			
+
+</section>
+<section id="dataTable">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="table-responsive">
+				<table class="table table-bordered table-condensed table-striped" id="wellData">
+					<thead>
+						<tr>
+							<th>County</th>
+							<th>Name</th>
+							<th>Address</th>
+							<th>Depth</th>
+							<th>Yield</th>
+							<th>Date</th>
+							
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+	</div>
+</section>
+</div>
+			
+</div>
+
+
+<!-- Modals -->
+<div class="modal fade" id="addFavorites" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add To My Favorites</h4>
+      </div>
+      <div class="modal-body">
+        <?php if ($this->GetIdentity()->auth_type != 'Guest'): ?>
+         
+        <?php else:?>
+        <div class="alert alert-danger">You are not signed in.</div>
+        <form role="form" class="form-horizontal" action="/auth/signin/index" method="post">
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="username" name="username" placeholder="Email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <input type="hidden" name="from" value="/well/browse/index" id="from">
+              <button class="btn btn-primary">Sign in</button>
+              <button class="btn btn-primary">Create Account</button>
+            </div>
+          </div>
+        </form>
+        <?php endif;?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button id="favoritesBtn" type="button" class="btn btn-primary" <?php if ($this->GetIdentity()->auth_type == 'Guest'): ?>disabled="disabled"<?php endif;?>>Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="apiInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">API Information</h4>
+      </div>
+      <div class="modal-body">
+       <?php if ($this->GetIdentity()->auth_type != 'Guest'): ?>
+         
+        <?php else:?>
+        <div class="alert alert-danger">You are not signed in.</div>
+        <form role="form" class="form-horizontal" action="/auth/signin/index" method="post">
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="username" name="username" placeholder="Email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+               <input type="hidden" name="from" value="/well/browse/index" id="from">
+              <button class="btn btn-primary">Sign in</button>
+              <button class="btn btn-primary">Create Account</button>
+            </div>
+          </div>
+        </form>
+        <?php endif;?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="printReport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Your Report</h4>
+      </div>
+      <div class="modal-body">
+        <?php if ($this->GetIdentity()->auth_type != 'Guest'): ?>
+         
+        <?php else:?>
+        <div class="alert alert-danger">You are not signed in.</div>
+        <form role="form" class="form-horizontal" action="/auth/signin/index" method="post">
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="username" name="username" placeholder="Email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+              
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <input type="hidden" name="from" value="/well/browse" id="from">
+              <button class="btn btn-primary">Sign in</button>
+              <button class="btn btn-primary" id="createAccount">Create Account</button>
+            </div>
+          </div>
+        </form>
+        <?php endif;?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="viewDriller" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Driller Information For <span id="drillerName"></span></h4>
+      </div>
+      <div class="modal-body">
+        
+        <?php if ($this->GetIdentity()->auth_type != 'Guest'): ?>
+         
+        <?php else:?>
+        <div class="alert alert-danger">You are not signed in.</div>
+        <form role="form" class="form-horizontal" action="/auth/signin/index" method="post">
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="username" name="username" placeholder="Email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <input type="hidden" name="from" value="/well/browse" id="from">
+              <button class="btn btn-primary">Sign in</button>
+              <button class="btn btn-primary" id="createAccount">Create Account</button>
+            </div>
+          </div>
+        </form>
+        <?php endif;?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="addComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Leave A Comment</h4>
+      </div>
+      <div class="modal-body">
+       
+         <?php if ($this->GetIdentity()->auth_type != 'Guest'): ?>
+         
+        <?php else:?>
+         <div class="alert alert-danger">You are not signed in.</div>
+        <form role="form" class="form-horizontal" action="/auth/signin/index" method="post">
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="username" name="username" placeholder="Email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+               <input type="hidden" name="from" value="/well/browse/index" id="from">
+              <button class="btn btn-primary">Sign in</button>
+              <button class="btn btn-primary">Create Account</button>
+            </div>
+          </div>
+        </form>
+        <?php endif;?>
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button id= "saveCommentBtn"type="button" class="btn btn-primary" <?php if ($this->GetIdentity()->auth_type == 'Guest'): ?>disabled="disabled"<?php endif;?>>Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="helpBrowse" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Help</h4>
+      </div>
+      <div class="modal-body">
+        
+       
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+  </div>
+</div>

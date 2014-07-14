@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<zend-config xmlns:zf="http://framework.zend.com/xml/zend-config-xml/1.0/">
+  <name>Pacific Network Managment</name>
+  <version>Beta 1.2</version>
+  <installed>true</installed>
+  <install_date>1387366595</install_date>
+  <time_zone>America/Los_Angeles</time_zone>
+  <language>en_Us</language>
+  <theme>cerulean</theme>
+  <debug_enabled>false</debug_enabled>
+  <show_errors>true</show_errors>
+  <db>
+    <adapter>pdo_mysql</adapter>
+    <params>
+      <host>localhost</host>
+      <username>pacif_root</username>
+      <password>11akers32</password>
+      <dbname>pacificn_default</dbname>
+    </params>
+  </db>
+  <music_dir>/music</music_dir>
+  <images>
+    <base_directory>/images</base_directory>
+  </images>
+  <cache>
+    <enabled>false</enabled>
+    <directory>/cache</directory>
+  </cache>
+  <movie_dir></movie_dir>
+</zend-config>

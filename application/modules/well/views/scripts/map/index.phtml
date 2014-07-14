@@ -1,0 +1,379 @@
+<script type="text/javascript">
+$("document").ready(function ( ) {
+	getNearByData(2, 25);
+	$("#numWells").html(25);
+	$(function() {
+		$( "#slider" ).slider({step: 4, value: 25, min: 1, 
+			  change: function( event, ui ) {
+				  var selection = $(this ).slider( "value" );
+				    
+				    $("#numWells").html(selection);
+				    $('#depthMapBox').gmap('destroy');
+				    
+				    $("#wellData  tbody").empty();
+				    getNearByData(2, selection);
+			  }
+		 });
+	});
+	
+});
+
+// get near by data
+function getNearByData(distance, limit)
+{
+	
+	$.ajax({
+	    url : "/well/json/near-by/id/<?php echo $this->id; ?>/distance/"+distance+"/limit/" + limit,
+	    type: "GET",
+	    dataType: "json",
+	    success: nearBySuccess,
+	    error: errorFn,
+	    complete: function (xhr, status) {
+	        
+		}
+	});
+}
+
+// near by success
+function nearBySuccess(result)
+{
+	if(result.code == 200) {
+		var d = result.response;
+		var lat = d[0].latitude;
+		var lng = d[0].longitude;
+
+		var avgFirstWater = 0;
+		var avgDepthDrilled = 0;
+		var avgCompletedDepth = 0;
+	    var avgStaticDepth = 0;
+	    var avgYield = 0;
+
+	    console.log(result.response);
+	    
+	    
+	    $('#depthMapBox').gmap({'zoom': 14, 'center': lat+","+lng, 'scrollwheel': false,}).bind('init', function(ev, map) {
+	    	
+	           var i = 0;
+	    	   $.each( result.response, function( key, value ) {
+		    	   
+	    	   $('#wellData > tbody:last').append('<tr><td><a href="/well/view/index/id/'+value.id+'">'+value.street_of_well+'</a></td><td class="text-right">'+value.depth_first_water+' <small class="text-muted">ft</small></td><td class="text-right">'+value.depth_drilled+' <small class="text-muted">ft</small></td><td class="text-right">'+value.completed_depth+' <small class="text-muted">ft</small></td><td class="text-right">'+value.post_static_water_level+' <small class="text-muted">ft</small></td><td class="text-right">'+value.max_yield+' <small class="text-muted">gpm</small></td></tr>');
+	    	   
+		       $('#depthMapBox').gmap('addMarker', {'position': value.latitude+','+value.longitude, 'bounds': false, title: value.street_of_well},
+		           function (map, marker) {
+		    	      $(marker).mouseover(function() {
+		    	    	  
+		    	      });
+		    	         
+		    	      $(marker).click(function() {
+		              
+		               
+		               $("#wellDetails").modal('show');
+		               $("#test").html(value.name_first);
+		               $("#wlCountyCode").html(value.wl_county_code);
+		               $("#state").html(value.state);
+		               $("#typeOfLog").html(value.type_of_log);
+		               $("#street").html(value.street_of_well);
+		               $('#city').html(value.city_of_well);
+		               $("#wlNbr").html(value.wl_nbr);
+		               $("#wellTagNbr").html(value.well_tag_nbr);
+		               $("#startcardNbr").html(value.startcardNbr);
+
+		               var trs = value.township + " " + value.township_char + " " + value.t_range + " " + value.range_char + " " + value.sctn + " ";
+		               if(value.qtr160 != 0) {
+		       	    	trs = trs + value.qtr160;
+    		       	   }
+    
+    		       	   if(value.qtr40 != 0) {
+    		       	    	trs = trs + value.qtr40;
+    		       	   }
+		               $("#trs").html(trs);
+		               $("#latLng").html(value.latitude + "/" + value.longitude);
+		               $("#startDate").html(value.start_date);
+		               $("#completeDate").html(value.complete_date);
+		               $("#receivedDate").html(value.received_date);
+		               $("#depthFirstWater").html(value.depth_first_water);
+		               $("#depthDrilled").html(value.depth_drilled);
+		               $("#completedDepth").html(value.completed_depth);
+		               $("#postStaticWaterLevel").html(value.post_static_water_level);
+		               $("#maxYield").html(value.max_yield);
+		               
+		               $("#drillerName").html(value.bonded_name_first + ' ' + value.bonded_name_last);
+		               $("#bondedLicenseNbr").html(value.bonded_license_nbr);
+		               $("#gotobtn").attr("href",'/well/view/index/id/' + value.id);
+		               
+		               
+		               // get work
+    		       	    var work = "Other";
+    		       	    if(value.work_new == 1) {
+    		       	    	work = "New";
+    		       		}
+    		       	    if(value.work_abandonment == 1) {
+    		       	        work = "Abandonment";
+    		       		}
+    		       	    if(value.work_deepening == 1) {
+    		       	    	work = "Alteration";
+    		       	    }
+    		       		if(value.work_conversion == 1) {
+    		       		    work = "Conversion";
+    		       		}
+    		       		$("#lastWork").html(work);
+
+    		       	// get use
+    		    	    var use = "";
+    		    	    if(value.use_domestic == 1) {
+    		    	        use = "Domestic";
+    		    	    }
+    		    	    if(value.use_irrigation == 1) {
+    		    	        use = "Irrigation";
+    		    		}
+    		    		if(value.use_community == 1) {
+    		    		    use = "Community";
+    		    		}
+    		    	    if(value.use_livestock == 1) {
+    		    	        use = "Livestock";
+    		    	    }
+    		    	    if(value.use_industrial == 1) {
+    		    	        use = "Industrial";
+    		    	    }
+    		    	    if(value.use_injection == 1) {
+    		    	        use = "Injection";
+    		    	    }
+    		    	    if(value.use_thermal == 1) {
+    		    	        use = "Geo Thermal";
+    		    	    }
+    		    	    if(value.use_dewatering == 1) {
+    		    	        use = "De-Watering";
+    		    	    }
+    		    	    if(value.use_piezometer == 1) {
+    		    	        use = "Piezometer";
+    		    	    }
+    		    	    if(value.use_other == 1) {
+    		    	        use = "Other";
+    		    	    }
+    		    	    $("#use").html(use);
+       		               
+		            });
+		       });
+
+		       avgFirstWater += parseInt(value.depth_first_water);
+		       avgDepthDrilled += parseInt(value.depth_drilled);
+		       avgCompletedDepth += parseInt(value.completed_depth);
+		       avgStaticDepth += parseInt(value.post_static_water_level);
+		       avgYield += parseInt(value.max_yield);
+		      i++;
+	        });		     
+	    	   console.log(i);
+	    	   $('#wellData > tbody:last').append('<tr class="warning"><th>Street</th><th>First Water</th><th>Drilled Depth</th><th>Finish Depth</th><th>Static Water</th><td>Yield</th></tr>');
+			      
+	    	   $('#wellData tfoot').append('<tr><th>Averages</th><th class="text-right">'+avgFirstWater / i+' <small class="text-muted">ft</small></th><th class="text-right">'+avgDepthDrilled / i+' <small class="text-muted">ft</small></th><th class="text-right">'+avgCompletedDepth / i+' <small class="text-muted">ft</small></th><th class="text-right">'+avgStaticDepth / i+' <small class="text-muted">ft</small></th><th class="text-right">'+Math.round(avgYield) / i+' <small class="text-muted">gpm</small></th>');
+	    });
+	     
+	} else {
+		$("#alertError").html("There was and Error ");
+	    $("#alertError").show();
+		console.log("There was and Error ");
+	}
+}
+
+// Error function
+function errorFn (xhr, status, strErr) {
+	$("#alertError").html("There was and Error " + strErr);
+    $("#alertError").show();
+	console.log("There was and Error " + strErr);
+}
+</script>
+
+<?php echo $this->wellNav(); ?>
+<div class="alert alert-danger" style="display: none;" id="alertError"></div>
+<section id="details">
+	<div class="panel panel-default">
+		<div class="panel-body">
+
+			<section id="">
+				<div class="row">
+					<div class="col-md-12">
+						<h3>Wells In The Area    <div id="slider" class="col-sm-4 pull-right"></div> <span class="pull-right small" style="padding-right:16px;">Showing <span id="numWells"></span> max wells</span></h3>
+						
+						<div id="depthMapBox" style="height: 500px;" class="thumbnail"></div>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<div class="row">
+					<div class="col-md-12">
+						<h3>Data</h3>
+						<div class="table-responsive">
+							<table class="table table-bordered table-condensed table-striped"
+								id="wellData">
+								<thead>
+									<tr class="warning">
+										<th>Address</th>
+										<th>First Water</th>
+										<th>Drilled Depth</th>
+										<th>Finish Depth</th>
+										<th>Static Water</th>
+										<th>Yield</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+								<tfoot></tfoot>
+							</table>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</section>
+
+
+<!--  Modals -->
+<div class="modal fade" id="helpBrowse" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Help</h4>
+			</div>
+			<div class="modal-body"></div>
+			<div class="modal-footer">
+
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="wellDetails" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Well Data Details</h4>
+			</div>
+			<div class="modal-body">
+				<h3>Location</h3>
+				<div class="row">
+					<div class="col-md-4">
+						<strong class="text-primary">County:</strong> <span
+							id="wlCountyCode"</span>
+					</div>
+					<div class="col-md-4">
+						<strong class="text-primary">State:</strong> <span id="state"></span>
+					</div>
+					<div class="col-md-4">
+						<strong class="text-primary">Log Type:</strong> <span
+							id="typeOfLog"></span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-4">
+						<strong class="text-primary">Street:</strong> <span id="street"></span>
+					</div>
+					<div class="col-md-4">
+						<strong class="text-primary">City:</strong> <span id="city"></span>
+					</div>
+					<div class="col-md-4">
+						<strong class="text-primary">Tax Lot:</strong> <span id="txLot"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<strong class="text-primary">State Well Record:</strong> <span
+							id="wlNbr"></span>
+					</div>
+					<div class="col-md-4">
+						<strong class="text-primary">Well Tag:</strong> <span
+							id="wellTagNbr"></span>
+					</div>
+					<div class="col-md-4">
+						<strong class="text-primary">State Card No:</strong> <span
+							id="startcardNbr"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<strong class="text-primary">TRS:</strong> <span id="trs"></span>
+					</div>
+					<div class="col-md-8">
+						<strong class="text-primary">LAT/LNG:</strong> <span id="latLng"></span>
+					</div>
+
+				</div>
+				<hr />
+				<h3>Details</h3>
+				<div class="row">
+					<div class="col-md-4">
+						<strong class="text-primary">Started:</strong> <span
+							id="startDate"></span>
+					</div>
+					<div class="col-md-4">
+						<strong class="text-primary">Completed:</strong> <span
+							id="completeDate"></span>
+					</div>
+					<div class="col-md-4">
+						<strong class="text-primary">Received:</strong> <span
+							id="receivedDate"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<strong class="text-primary">First Water:</strong> <span
+							id="depthFirstWater"></span>
+					</div>
+					<div class="col-md-4">
+						<strong class="text-primary">Depth Drilled:</strong> <span
+							id="depthDrilled"></span>
+					</div>
+					<div class="col-md-4">
+						<strong class="text-primary">Completed Depth:</strong> <span
+							id="completedDepth"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<strong class="text-primary">Static Level:</strong> <span
+							id="postStaticWaterLevel"></span>
+					</div>
+					<div class="col-md-4">
+						<strong class="text-primary">Yield:</strong> <span id="maxYield"></span>
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<div class="col-md-12">
+						<strong class="text-primary">Last Work Recorded:</strong> <span
+							id="lastWork"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<strong class="text-primary">Well Use:</strong> <span id="use"></span>
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<div class="col-md-4">
+						<strong class="text-primary">Driller:</strong> <span id="drillerName"></span>
+					</div>
+					<div class="col-md-8">
+						<strong class="text-primary">Bonded License No:</strong> <span
+							id="bondedLicenseNbr"></span>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">   
+                <a href="" class="btn btn-primary" id="gotobtn">Go To Well Data</a>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,107 @@
+<div class="row">
+	<div class="col-md-3">
+		<?php echo $this->AclNav('index')?>
+	</div>
+	<div class="col-md-9">
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><?php echo $this->translate('Roles')?></h3>
+			</div>
+				<table class="table table-striped table-bordered table-responsive small">
+					<thead>
+						<tr>
+							<th><?php echo $this->translate('Role'); ?></th>
+							<th><?php echo $this->translate('Display'); ?></th>
+							<th><?php echo $this->translate('Inherents'); ?></th>
+							<th><?php echo $this->translate('Modified'); ?></th>
+							<th class="col-md-2"></th>
+						</tr>
+					</thead>
+					<tbody>
+                        <?php foreach($this->roles as $role):?>
+                        <tr>
+                            <td><?php echo $this->escape($role->acl_role_name); ?></td>
+                            <td><?php echo $this->escape($role->acl_role_display); ?></td>
+                            <td><?php echo $this->escape(ucfirst($role->acl_role_child_name)); ?></td>
+                            <td><?php echo $this->escape($role->modified); ?></td>
+                            <td class="text-right">
+                                <?php echo $this->UpdateButton('/acl/update/role/acl_role_id/' . $role->acl_role_id, $this->translate('Update Role'))?>
+                                <?php echo $this->DeleteButton('/acl/delete/role/acl_role_id/' .$role->acl_role_id, $this->translate('Delete Role'))?> 
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+					</tbody>
+				</table>
+			
+		</div>
+
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><?php echo $this->translate('Resources'); ?></h3>
+			</div>
+				<table class="table table-striped table-bordered table-responsive small">
+					<thead>
+						<tr>
+							<th><?php echo $this->translate('Name'); ?></th>
+							<th><?php echo $this->translate('Display'); ?></th>
+							<th><?php echo $this->translate('Modified'); ?></th>
+							<th class="col-md-2"></th>
+						</tr>
+					</thead>
+					<tbody>
+                    <?php foreach($this->resources as $resource):?>
+                        <tr>
+                            <td><?php echo $this->escape($resource->acl_resource_name); ?></td>
+                            <td><?php echo $this->escape($resource->acl_resource_display); ?></td>
+                            <td><?php echo $this->escape($resource->modified); ?></td>
+                            <td class="text-right">
+                                <?php echo $this->UpdateButton('/acl/update/resource/acl_resource_id/' . $resource->acl_resource_id, $this->translate('Update Resource'))?>
+                                <?php echo $this->DeleteButton('/acl/delete/resource/acl_resource_id/' . $resource->acl_resource_id, $this->translate('Delete Resource'))?> 
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+					</tbody>
+				</table>
+			
+		</div>
+
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><?php echo $this->translate('Rules')?></h3>
+			</div>
+			     <table class="table table-striped table-bordered table-responsive small">
+					<thead>
+						<tr>
+						    <th><?php echo $this->translate('Role')?></th>
+						    <th><?php echo $this->translate('Rule')?></th>
+							<th><?php echo $this->translate('Resource')?></th>
+							<th><?php echo $this->translate('Modified')?></th>
+							<th class="col-md-2"></th>
+						</tr>
+					</thead>
+					<tbody>
+                    <?php foreach($this->rules as $rule):?>
+                        <tr>
+                            <td><?php echo $this->escape($rule->acl_role_display); ?></td>
+                            <td><?php echo $this->escape(ucfirst($rule->acl_type)); ?></td>
+                            <td><?php echo $this->escape($rule->acl_resource_display); ?></td>
+                            <td><?php echo $this->escape($rule->modified); ?></td>
+                            <td class="text-right">
+                                <?php echo $this->UpdateButton('/acl/update/rule/acl_rule_id/' . $this->escape($rule->acl_rule_id), $this->translate('Update Rule'))?>
+                                <?php echo $this->DeleteButton('/acl/delete/rule/acl_rule_id/' . $this->escape($rule->acl_rule_id), $this->translate('Delete Rule'))?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+					</tbody>
+				</table>
+			
+
+		</div>
+	</div>
+</div>
+<?php echo $this->PageHelp('/acl/index/index');?>
+
+

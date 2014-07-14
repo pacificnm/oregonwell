@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configdata>
+	<navigation>
+
+		<index_index>
+			<label>Home</label>
+			<module>default</module>
+			<controller>index</controller>
+			<action>index</action>
+			<resource>2</resource>
+			<visible>true</visible>
+			<pages>
+				<client_view_index>
+					<label>My Company</label>
+					<module>client</module>
+					<controller>index</controller>
+					<action>view</action>
+					<resource>5</resource>
+					<visible>true</visible>
+					<params_id>id</params_id>
+					<params_id>client_id</params_id>
+					<pages>
+						<user_index_view>
+							<label>Users</label>
+							<module>user</module>
+							<controller>index</controller>
+							<action>view</action>
+							<resource>5</resource>
+							<visible>true</visible>
+							<params_id>id</params_id>
+							<params_id>client_id</params_id>
+							<pages>
+								<user_index_create>
+									<label>Create User</label>
+									<module>user</module>
+									<controller>index</controller>
+									<action>create</action>
+									<resource>5</resource>
+									<visible>true</visible>
+									<params_id>id</params_id>
+									<params_id>client_id</params_id>
+								</user_index_create>
+								<user_index_update>
+									<label>Update User</label>
+									<module>user</module>
+									<controller>index</controller>
+									<action>update</action>
+									<resource>5</resource>
+									<visible>true</visible>
+									<params_id>id</params_id>
+									<params_id>client_id</params_id>
+								</user_index_update>
+								<user_index_delete>
+									<label>Delete User</label>
+									<module>user</module>
+									<controller>index</controller>
+									<action>delete</action>
+									<resource>5</resource>
+									<visible>true</visible>
+									<params_id>id</params_id>
+									<params_id>client_id</params_id>
+								</user_index_delete>
+								<user_index_detail>
+									<label>View User</label>
+									<module>user</module>
+									<controller>index</controller>
+									<action>detail</action>
+									<resource>5</resource>
+									<visible>true</visible>
+									<params_id>id</params_id>
+									<params_id>client_id</params_id>
+									<params_id>user_id</params_id>
+								</user_index_detail>
+							</pages>
+						</user_index_view>
+
+						<password_index_view>
+							<label>Passwords</label>
+							<module>password</module>
+							<controller>index</controller>
+							<action>view</action>
+							<resource>5</resource>
+							<visible>true</visible>
+							<params_id>id</params_id>
+							<params_id>client_id</params_id>
+							<pages>
+								<password_index_create>
+									<label>Create Password</label>
+									<module>password</module>
+									<controller>index</controller>
+									<action>create</action>
+									<resource>5</resource>
+									<visible>true</visible>
+									<params_id>id</params_id>
+									<params_id>client_id</params_id>
+								</password_index_create>
+								<password_index_update>
+									<label>Update Password</label>
+									<module>password</module>
+									<controller>index</controller>
+									<action>update</action>
+									<resource>5</resource>
+									<visible>true</visible>
+									<params_id>id</params_id>
+									<params_id>client_id</params_id>
+								</password_index_update>
+								<password_index_delete>
+									<label>Delete Password</label>
+									<module>password</module>
+									<controller>index</controller>
+									<action>delete</action>
+									<resource>5</resource>
+									<visible>true</visible>
+									<params_id>id</params_id>
+									<params_id>client_id</params_id>
+								</password_index_delete>
+
+							</pages>
+						</password_index_view>
+
+						<server_index_view>
+							<label>Servers</label>
+							<module>server</module>
+							<controller>index</controller>
+							<action>view</action>
+							<resource>5</resource>
+							<visible>true</visible>
+							<params_id>id</params_id>
+							<params_id>client_id</params_id>
+							<pages>
+								<server_index_create>
+									<label>Create Server</label>
+									<module>server</module>
+									<controller>index</controller>
+									<action>create</action>
+									<resource>5</resource>
+									<visible>true</visible>
+									<params_id>id</params_id>
+									<params_id>client_id</params_id>
+								</server_index_create>
+								<server_index_update>
+									<label>Update Server</label>
+									<module>server</module>
+									<controller>index</controller>
+									<action>update</action>
+									<resource>5</resource>
+									<visible>true</visible>
+									<params_id>id</params_id>
+									<params_id>client_id</params_id>
+								</server_index_update>
+								<server_index_delete>
+									<label>Delete Server</label>
+									<module>server</module>
+									<controller>index</controller>
+									<action>delete</action>
+									<resource>5</resource>
+									<visible>true</visible>
+									<params_id>id</params_id>
+									<params_id>client_id</params_id>
+								</server_index_delete>
+							</pages>
+						</server_index_view>
+
+						<workstation_index_view>
+							<label>Workstations</label>
+							<module>workstation</module>
+							<controller>index</controller>
+							<action>view</action>
+							<resource>5</resource>
+							<visible>true</visible>
+							<params_id>id</params_id>
+							<params_id>client_id</params_id>
+							<pages>
+								<workstation_index_create>
+									<label>Create Workstation</label>
+									<module>workstation</module>
+									<controller>index</controller>
+									<action>create</action>
+									<resource>5</resource>
+									<visible>true</visible>
+									<params_id>id</params_id>
+									<params_id>client_id</params_id>
+								</workstation_index_create>
+								<workstation_index_update>
+									<label>Update Workstation</label>
+									<module>workstation</module>
+									<controller>index</controller>
+									<action>update</action>
+									<resource>5</resource>
+									<visible>true</visible>
+									<params_id>id</params_id>
+									<params_id>client_id</params_id>
+								</workstation_index_update>
+								<workstation_index_delete>
+									<label>Delete Workstation</label>
+									<module>workstation</module>
+									<controller>index</controller>
+									<action>delete</action>
+									<resource>5</resource>
+									<visible>true</visible>
+									<params_id>id</params_id>
+									<params_id>client_id</params_id>
+								</workstation_index_delete>
+							</pages>
+						</workstation_index_view>
+
+						<printer_index_view>
+							<label>Printers</label>
+							<module>printer</module>
+							<controller>index</controller>
+							<action>view</action>
+							<resource>5</resource>
+							<visible>true</visible>
+							<params_id>id</params_id>
+							<params_id>client_id</params_id>
+							<pages>
+								<printer_index_create>
+									<label>Create Printer</label>
+									<module>printer</module>
+									<controller>index</controller>
+									<action>create</action>
+									<resource>5</resource>
+									<visible>true</visible>
+									<params_id>id</params_id>
+									<params_id>client_id</params_id>
+								</printer_index_create>
+								<printer_index_update>
+									<label>Update Printer</label>
+									<module>printer</module>
+									<controller>index</controller>
+									<action>update</action>
+									<resource>5</resource>
+									<visible>true</visible>
+									<params_id>id</params_id>
+									<params_id>client_id</params_id>
+								</printer_index_update>
+								<printer_index_delete>
+									<label>Delete Printer</label>
+									<module>printer</module>
+									<controller>index</controller>
+									<action>delete</action>
+									<resource>5</resource>
+									<visible>true</visible>
+									<params_id>id</params_id>
+									<params_id>client_id</params_id>
+								</printer_index_delete>
+							</pages>
+						</printer_index_view>
+
+						<network_router_view>
+							<label>Routers</label>
+							<module>network</module>
+							<controller>router</controller>
+							<action>view</action>
+							<resource>5</resource>
+							<visible>true</visible>
+							<params_id>id</params_id>
+							<params_id>client_id</params_id>
+						</network_router_view>
+
+						<network_switch_view>
+							<label>Switches</label>
+							<module>network</module>
+							<controller>switch</controller>
+							<action>view</action>
+							<resource>5</resource>
+							<visible>true</visible>
+							<params_id>id</params_id>
+							<params_id>client_id</params_id>
+						</network_switch_view>
+
+						<network_wireless_view>
+							<label>Wireless Routers</label>
+							<module>network</module>
+							<controller>wireless</controller>
+							<action>view</action>
+							<resource>5</resource>
+							<visible>true</visible>
+							<params_id>id</params_id>
+							<params_id>client_id</params_id>
+						</network_wireless_view>
+
+						<network_remote_view>
+							<label>Remote Access</label>
+							<module>network</module>
+							<controller>remote</controller>
+							<action>view</action>
+							<resource>5</resource>
+							<visible>true</visible>
+							<params_id>id</params_id>
+							<params_id>client_id</params_id>
+						</network_remote_view>
+
+						<network_domain_view-ms>
+							<label>Windows Domain</label>
+							<module>network</module>
+							<controller>domain</controller>
+							<action>view-ms</action>
+							<resource>5</resource>
+							<visible>true</visible>
+							<params_id>id</params_id>
+							<params_id>client_id</params_id>
+						</network_domain_view-ms>
+
+						<network_domain_view-web>
+							<label>Internet Domain</label>
+							<module>network</module>
+							<controller>domain</controller>
+							<action>view-web</action>
+							<resource>5</resource>
+							<visible>true</visible>
+							<params_id>id</params_id>
+							<params_id>client_id</params_id>
+						</network_domain_view-web>
+
+						<workorder_index_view>
+							<label>Work Orders</label>
+							<module>workorder</module>
+							<controller>index</controller>
+							<action>index</action>
+							<resource>5</resource>
+							<visible>true</visible>
+							<params_id>id</params_id>
+							<params_id>client_id</params_id>
+							<pages>
+								<workorder_index_view>
+									<label>View Work Order</label>
+									<module>workorder</module>
+									<controller>index</controller>
+									<action>view</action>
+									<resource>5</resource>
+									<visible>true</visible>
+									<params_id>id</params_id>
+									<params_id>client_id</params_id>
+									<params_id>workorder_id</params_id>
+									<pages>
+										<workorder_update_workorder>
+											<label>Update Work Order</label>
+											<module>workorder</module>
+											<controller>update</controller>
+											<action>workorder</action>
+											<resource>5</resource>
+											<visible>true</visible>
+											<params_id>id</params_id>
+											<params_id>client_id</params_id>
+											<params_id>workorder_id</params_id>
+										</workorder_update_workorder>
+										<workorder_create_note>
+											<label>Create Work Order Note</label>
+											<module>workorder</module>
+											<controller>create</controller>
+											<action>note</action>
+											<resource>5</resource>
+											<visible>true</visible>
+											<params_id>id</params_id>
+											<params_id>client_id</params_id>
+											<params_id>workorder_id</params_id>
+										</workorder_create_note>
+										<workorder_update_note>
+											<label>Update Work Order Note</label>
+											<module>workorder</module>
+											<controller>update</controller>
+											<action>note</action>
+											<resource>5</resource>
+											<visible>true</visible>
+											<params_id>id</params_id>
+											<params_id>client_id</params_id>
+											<params_id>workorder_id</params_id>
+										</workorder_update_note>
+										<workorder_delete_note>
+											<label>Delete Work Order Note</label>
+											<module>workorder</module>
+											<controller>delete</controller>
+											<action>note</action>
+											<resource>5</resource>
+											<visible>true</visible>
+											<params_id>id</params_id>
+											<params_id>client_id</params_id>
+											<params_id>workorder_id</params_id>
+										</workorder_delete_note>
+										<workorder_create_time>
+											<label>Create Work Order Time</label>
+											<module>workorder</module>
+											<controller>create</controller>
+											<action>time</action>
+											<resource>5</resource>
+											<visible>true</visible>
+											<params_id>id</params_id>
+											<params_id>client_id</params_id>
+											<params_id>workorder_id</params_id>
+										</workorder_create_time>
+										<workorder_create_hardware>
+											<label>Create Work Order Hardware</label>
+											<module>workorder</module>
+											<controller>create</controller>
+											<action>hardware</action>
+											<resource>5</resource>
+											<visible>true</visible>
+											<params_id>id</params_id>
+											<params_id>client_id</params_id>
+											<params_id>workorder_id</params_id>
+										</workorder_create_hardware>
+										<workorder_update_cloese>
+											<label>Close Out Work Order</label>
+											<module>workorder</module>
+											<controller>update</controller>
+											<action>close</action>
+											<resource>5</resource>
+											<visible>true</visible>
+											<params_id>id</params_id>
+											<params_id>client_id</params_id>
+											<params_id>workorder_id</params_id>
+										</workorder_update_cloese>
+									</pages>
+								</workorder_index_view>
+							</pages>
+						</workorder_index_view>
+
+
+						<invoice_index_view>
+							<label>Invoices</label>
+							<module>invoice</module>
+							<controller>index</controller>
+							<action>index</action>
+							<resource>5</resource>
+							<visible>true</visible>
+							<params_id>id</params_id>
+							<params_id>client_id</params_id>
+							<pages>
+								<invoice_index_view>
+									<label>View Invoice</label>
+									<module>invoice</module>
+									<controller>index</controller>
+									<action>view</action>
+									<resource>5</resource>
+									<visible>true</visible>
+									<params_id>id</params_id>
+									<params_id>client_id</params_id>
+									<params_id>invoice_id</params_id>
+									<pages>
+										<invoice_index_payment>
+											<label>Invoice Payment</label>
+											<module>invoice</module>
+											<controller>index</controller>
+											<action>payment</action>
+											<resource>5</resource>
+											<visible>true</visible>
+											<params_id>id</params_id>
+											<params_id>client_id</params_id>
+											<params_id>invoice_id</params_id>
+										</invoice_index_payment>
+									</pages>
+								</invoice_index_view>
+							</pages>
+						</invoice_index_view>
+						<register_view_client>
+							<label>View Register</label>
+							<module>register</module>
+							<controller>view</controller>
+							<action>client</action>
+							<resource>5</resource>
+							<visible>true</visible>
+							<params_id>id</params_id>
+							<params_id>client_id</params_id>
+							<pages>
+								<invoice_index_create>
+									<label>Create Invoice</label>
+									<module>invoice</module>
+									<controller>index</controller>
+									<action>create</action>
+									<resource>5</resource>
+									<visible>true</visible>
+									<params_id>id</params_id>
+									<params_id>client_id</params_id>
+								</invoice_index_create>
+							</pages>
+						</register_view_client>
+
+					</pages>
+				</client_view_index>
+
+			</pages>
+
+		</index_index>
+
+
+
+
+
+
+
+		<auth_view_index>
+			<label>My Account</label>
+			<module>auth</module>
+			<controller>view</controller>
+			<action>index</action>
+			<resource>5</resource>
+			<visible>false</visible>
+			<pages>
+				<auth_update_index>
+					<label>Update My Account</label>
+					<module>auth</module>
+					<controller>update</controller>
+					<action>index</action>
+					<resource>5</resource>
+					<visible>true</visible>
+				</auth_update_index>
+				<auth_update_password>
+					<label>Change Password</label>
+					<module>auth</module>
+					<controller>update</controller>
+					<action>password</action>
+					<resource>5</resource>
+					<visible>true</visible>
+				</auth_update_password>
+			</pages>
+		</auth_view_index>
+
+	</navigation>
+</configdata>

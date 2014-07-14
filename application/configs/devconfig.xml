@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<zend-config xmlns:zf="http://framework.zend.com/xml/zend-config-xml/1.0/">
+  <name>Oreogn Well</name>
+  <version>1.0.01</version>
+  <installed>true</installed>
+  <install_date>1387366595</install_date>
+  <time_zone>America/Los_Angeles</time_zone>
+  <language>en_Us</language>
+  <theme>cerulean</theme>
+  <debug_enabled>false</debug_enabled>
+  <show_errors>true</show_errors>
+  <db>
+    <adapter>pdo_mysql</adapter>
+    <params>
+      <host>localhost</host>
+      <username>root</username>
+      <password>11akers32</password>
+      <dbname>oregon_well</dbname>
+    </params>
+  </db>
+ <mail>
+      <transport>
+          <type>smtp</type>
+          <host>mail.pacificnm.com</host>
+          <auth>login</auth>
+          <username>support@pacificnm.com</username>
+          <password>Apophis!13</password>
+      </transport>
+      <defaultFrom>
+          <email>support@pacificnm.com</email>
+          <name>Pacific Network Management</name>
+      </defaultFrom>
+      <defaultReplyTo>
+          <email>support@pacificnm.com</email>
+          <name>Pacific Network Management</name>
+      </defaultReplyTo>
+      <templatePath>/modules/email/views/emails</templatePath>
+      <template>
+          <newsletter>My Site Name - Newsletter</newsletter>
+      </template>
+  </mail>
+  <images>
+    <base_directory>/images</base_directory>
+  </images>
+  <cache>
+    <enabled>false</enabled>
+    <directory>/cache</directory>
+  </cache>
+  <movie_dir></movie_dir>
+</zend-config>

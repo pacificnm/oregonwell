@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-md-3">
+    <?php echo $this->PageNav(); ?>
+    <div class="panel panel-default">
+      <div class="panel-heading">Search</div>
+      <div class="panel-body">
+        <form role="form" method="post">
+          <div class="form-group">
+            <label for="content_name">Content Name</label>
+            <input type="text" class="form-control" name="content_name" id="content_name">
+          </div>
+          <div class="form-group">
+            <label for="content_type">Content Type</label>
+            <select class="form-control" name="content_type" id="content_type">
+              <option value="">Any</option>
+              <option value="it-service">IT Services</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">Content Pages <span class="badge pull-right"><?php echo count($this->contents); ?></span></div>
+        <div class="table-responsive">
+          <table class="table table-bordered table-condensed table-striped">
+            <thead>
+              <tr class="success">
+                <th>Name</th>
+                <th>Type</th>
+                <th>Title</th>
+                <th>Hits</th>
+                <th>Created</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach($this->contents as $content): ?>
+              <tr>
+                <td><a href="/<?php echo $content->content_type; ?>/<?php echo $content->content_name; ?>"><?php echo $content->content_name; ?></a></td>
+                <td><?php echo ucwords(str_replace('-', ' ', $content->content_type)); ?></td>
+                <td><?php echo $content->content_title; ?></td>
+                <td><?php echo $content->content_hits; ?></td>
+                <td><?php echo date("m-d-Y h:i A", $content->content_created); ?></td>
+                <td class="text-right">
+                  <?php echo $this->UpdateButton('/page/update/content/content_id/' . $content->content_id, 'Edit Page'); ?>
+                  <?php echo $this->DeleteButton('/page/delete/content/content_id/' . $content->content_id, 'Delete Page'); ?>
+                </td>
+              </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
+</div>  
+
+

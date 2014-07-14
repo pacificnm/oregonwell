@@ -1,0 +1,90 @@
+<div class="row">
+	<div class="col-md-3 col-lg-4">
+        <?php echo $this->Nav(); ?>
+    </div>
+	<div class="col-md-9 col-lg-8">
+		<div class="row">
+			<div class="col-md-2">
+				<b><?php echo $this->translate('Label')?></b>
+			</div>
+			<div class="col-md-10"><?php echo $this->escape($this->config->label)?></div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<b><?php echo $this->translate('Module')?></b>
+			</div>
+			<div class="col-md-10"><?php echo ucfirst($this->escape($this->config->module))?></div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<b><?php echo $this->translate('Controller')?></b>
+			</div>
+			<div class="col-md-10"><?php echo ucfirst($this->escape($this->config->controller))?></div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<b><?php echo $this->translate('Action')?></b>
+			</div>
+			<div class="col-md-10"><?php echo ucfirst($this->escape($this->config->action))?></div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<b><?php echo $this->translate('Resource')?></b>
+			</div>
+			<div class="col-md-10"><?php echo $this->escape($this->config->resource)?></div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<b><?php echo $this->translate('Visible')?></b>
+			</div>
+			<div class="col-md-10"><?php echo ucfirst($this->escape($this->config->visible))?></div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 text-right">
+	           <?php echo $this->CreateButton('/navigation/index/create/id/', $this->translate('Create Navigation'));?>
+	           <?php echo $this->UpdateButton('/navigation/index/update/id/', $this->translate('Update Navigation'))?>
+	           <?php echo $this->DeleteButton('/navigation/index/delete/id', $this->translate('Delete Navigation'))?>
+	       </div>
+		</div>
+		<br />
+		<h4><?php echo $this->translate('Pages')?></h4>
+		<table
+			class="table table-striped table-bordered table-responsive small">
+			<thead>
+				<tr>
+					<th><?php echo $this->translate('Label')?></th>
+					<th><?php echo $this->translate('Module')?></th>
+					<th><?php echo $this->translate('Controller')?></th>
+					<th><?php echo $this->translate('Action')?></th>
+					<th><?php echo $this->translate('Access')?></th>
+					<th><?php echo $this->translate('Visible')?></th>
+					<th class="col-md-3"></th>
+				</tr>
+			</thead>
+	        <tbody>
+	        <?php foreach(array_keys($this->configs["pages"]) as $config):?>
+	           
+	           <tr>
+	               <td>
+	                   
+	                   <?php if( key_exists('pages', $this->configs["pages"][$config])) :?>
+	                       
+	                       <a href="/navigation/index/view/id/<?php echo key($this->configs["pages"])?>"><?php echo $this->configs["pages"][$config]['label']?></a>
+	                   <?php else :?>
+	                       <?php echo $this->configs["pages"][$config]['label']?>
+	                   <?php endif;?>
+	               </td>
+	               <td><?php echo $this->configs["pages"][$config]['module']?></td>
+	               <td><?php echo $this->configs["pages"][$config]['controller']?></td>
+	               <td><?php echo $this->configs["pages"][$config]['action']?></td>
+	               <td><?php echo $this->configs["pages"][$config]['resource']?></td>
+	               <td><?php echo $this->configs["pages"][$config]['visible']?></td>
+	               <td>
+	               
+	               </td>
+	           </tr>
+	        <?php endforeach;?>
+	        </tbody>
+	     </table>
+	</div>
+</div>

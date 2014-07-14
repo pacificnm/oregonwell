@@ -1,0 +1,90 @@
+<div class="row">
+	<div class="col-md-3">
+        <?php echo $this->PageNav(); ?>
+    </div>
+	<div class="col-md-9">
+	   <h3><?php echo $this->translate('View Page Translation Details'); ?></h3>
+	   <div class="row">
+	        <div class="col-md-2 text-primary">
+	           <b><?php echo $this->translate('Page'); ?></b>
+	        </div>
+	        <div class="col-md-10">
+	           <?php echo $this->escape($this->page->module);?>/<?php echo $this->escape($this->page->controller);?>/<?php echo $this->escape($this->page->action);?>
+	        </div>
+	   </div>
+	   <div class="row">
+	       <div class="col-md-2 text-primary">
+	           <b><?php echo $this->translate('Access'); ?></b>
+	       </div>
+	       <div class="col-md-10">
+	           <?php echo $this->escape($this->page->acl_resource_display);?>
+	       </div>
+	   </div>
+	   <div class="row">
+	       <div class="col-md-2 text-primary">
+	           <b><?php echo $this->translate('Language'); ?></b>
+	       </div>
+	       <div class="col-md-10">
+	           <?php echo $this->escape($this->meta->language);?>
+	       </div> 
+	   </div>
+	   <div class="row">
+	       <div class="col-md-2 text-primary">
+	           <b><?php echo $this->translate('Title'); ?></b>
+	       </div>
+	       <div class="col-md-10">
+	           <?php echo $this->escape($this->meta->page_title);?>
+	       </div>
+	   </div>
+	   <div class="row">
+	       <div class="col-md-2 text-primary">
+	           <b><?php echo $this->translate('Meta Title'); ?></b>
+	       </div>
+	       <div class="col-md-10">
+	           <?php echo $this->escape($this->meta->meta_title);?>
+	       </div>
+	   </div>
+	   <div class="row">
+	       <div class="col-md-2 text-primary">
+	           <b><?php echo $this->translate('Description');?></b>
+	       </div>
+	       <div class="col-md-10">
+	           <?php echo $this->escape($this->meta->meta_description);?>
+	       </div>
+	   </div>
+	   <div class="row">
+	       <div class="col-md-2 text-primary">
+	           <b><?php echo $this->translate('Keywords');?></b>
+	       </div>
+	       <div class="col-md-10">
+	           <?php echo $this->escape($this->meta->meta_keyword);?>
+	       </div>
+	   </div>
+	   <div class="row">
+	       <div class="col-md-2 text-primary">
+	           <b><?php echo $this->translate('Modified'); ?></b>
+	       </div>
+	       <div class="col-md-10">
+	           <?php echo $this->escape($this->meta->modified);?>
+	       </div>
+	   </div>
+	   <div class="row">
+	       <div class="col-md-12 text-right">
+	           <a href="<?php echo $this->url( array(
+	           	   'module' => 'page', 'controller' => 'update', 'action' => 'meta', 
+	                   'page_meta_id' => $this->escape($this->meta->page_meta_id)
+	               ) ); ?>" type="button" class="btn btn-warning" data-toggle="tooltip" 
+                   data-placement="top" title="<?php echo $this->translate('Update Page Translation');?>">
+	               <i class="glyphicon glyphicon-pencil"></i>
+	           </a>
+	           <a href="<?php echo $this->url( array(
+	                   'module' => 'page', 'controller' => 'delete', 'action' => 'meta',
+	                   'page_meta_id' => $this->escape($this->meta->page_meta_id)
+	               ) ); ?>" type="button" class="btn btn-danger" data-toggle="tooltip" 
+                   data-placement="top" title="<?php echo $this->translate('Delete Page Translation'); ?>">
+	               <i class="glyphicon glyphicon-remove"></i>
+	           </a>
+	       </div>
+	   </div>
+	</div>
+</div>

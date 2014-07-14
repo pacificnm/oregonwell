@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tmx version="1.4">
+	<header creationtoolversion="1.0.0" datatype="winres" segtype="sentence"
+           adminlang="en-us" srclang="de-at" o-tmf="abc"
+           creationtool="XYZTool" >
+    </header>
+    <body>
+		<tu tuid='Accounts'><tuv xml:lang="en"><seg>Accounts</seg></tuv></tu>
+		<tu tuid='My Account'><tuv xml:lang="en"><seg>My Account</seg></tuv></tu>
+		<tu tuid='Sign Out'><tuv xml:lang="en"><seg>Sign Out</seg></tuv></tu>
+		<tu tuid='Sign In'><tuv xml:lang="en"><seg>Sign In</seg></tuv></tu>
+  		
+  		
+  		
+	</body>
+</tmx>

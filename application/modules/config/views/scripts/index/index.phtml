@@ -1,0 +1,80 @@
+<div class="row">
+	<div class="col-md-4">
+        <?php echo $this->ConfigNav(); ?>
+    </div>
+	<div class="col-md-8">
+	   <table class="table table-striped table-bordered table-responsive">
+			<thead>
+				<tr>
+				    <th class="col-md-3">Option</th>
+				    <th>Value</th>
+				</tr>
+			</thead>
+			<tbody>
+    			 <tr>
+    			     <td >Application Name</td>
+    			     <td><?php echo $this->config->name; ?></td>
+    			 </tr><tr>
+    			     <td>Version</td>
+    			     <td><?php echo $this->config->version; ?></td>
+    			 </tr><tr>
+    			     <td>Installed</td>
+    			     <td><?php echo ucfirst($this->config->installed); ?>
+    			 </tr><tr>
+    			     <td>Install Date</td>
+    			     <td><?php echo $this->config->install_date; ?></td>
+    			 </tr><tr>
+    			     <td>Theme</td>
+    			     <td><?php echo ucfirst($this->config->theme);?></td>
+    			 </tr><tr>
+    			     <td>Language</td>
+    			     <td><?php echo $this->config->language;?></td>
+    			 </tr><tr>
+    			     <td>Time Zone</td>
+    			     <td><?php echo $this->config->time_zone; ?></td>
+    			 </tr><tr>
+    			     <td>Debug Enabled</td>
+    			     <td><?php echo ucfirst($this->config->debug_enabled); ?></td>
+    			 </tr><tr>
+    			     <td colspan="2" class="active">Database Configuration</td>
+    			 </tr><tr>
+    			     <td>Adapter</td>
+    			     <td><?php echo $this->config->db->adapter; ?></td>
+    			 </tr><tr>
+    			     <td>Host</td>
+    			     <td><?php echo $this->config->db->params->host; ?></td>
+    			 </tr><tr>
+    			     <td>Username</td>
+    			     <td><?php echo $this->config->db->params->username; ?></td>
+    			 </tr><tr>
+    			     <td>Password</td>
+    			     <td><?php echo $this->config->db->params->password; ?></td>
+    			 </tr><tr>
+    			     <td>Database</td>
+    			     <td><?php echo $this->config->db->params->dbname;?></td>
+    			 </tr><tr>
+    			     <td colspan="2" class="active">Music Configuration</td>
+    			 </tr><tr>
+    			     <td>Music Directory</td>
+    			     <td><?php echo $this->config->music_dir; ?></td>
+    			
+    			 </tr><tr>
+    			     <td colspan="2" class="active">Image Configuration</td>
+    			 </tr><tr>
+    			     <td>Base Directory</td>
+    			     <td><?php echo $this->config->images->base_directory;?></td>
+    			
+    			 </tr><tr>
+    			     <td colspan="2" class="active">Cache configuration</td>
+    			 </tr><tr>
+    			     <td>Cache Enabled</td>
+    			     <td><?php echo ucfirst($this->config->cache->enabled); ?></td>
+    			 </tr><tr>
+    			     <td>cache Directory</td>
+    			     <td><?php echo $this->config->cache->directory;?></td>
+    			 </tr>
+			</tbody>
+	   </table>
+		    
+	</div>
+</div>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tmx version="1.4">
+	<header creationtoolversion="1.0.0" datatype="winres" segtype="sentence"
+           adminlang="en-us" srclang="de-at" o-tmf="abc"
+           creationtool="XYZTool" >
+    </header>
+    <body>
+		<tu tuid='Cache'><tuv xml:lang="en"><seg>Cache</seg></tuv></tu>
+		<tu tuid='Cache Directory'><tuv xml:lang="en"><seg>Cache Directory</seg></tuv></tu>
+		<tu tuid='All caches have been cleared.'><tuv xml:lang="en"><seg>All caches have been cleared.</seg></tuv></tu>
+  		<tu tuid='Clean All Caches'><tuv xml:lang="en"><seg>Clean All Caches</seg></tuv></tu>
+  		
+  		
+  		
+  		
+	</body>
+</tmx>

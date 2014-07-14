@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tmx version="1.4">
+	<header creationtoolversion="1.0.0" datatype="winres" segtype="sentence"
+           adminlang="en-us" srclang="de-at" o-tmf="abc"
+           creationtool="XYZTool" >
+    </header>
+    <body>
+        <tu tuid='ACL'><tuv xml:lang="en"><seg>ACL</seg></tuv></tu>
+		<tu tuid='Roles'><tuv xml:lang="en"><seg>Roles</seg></tuv></tu>
+		<tu tuid='Role'><tuv xml:lang="en"><seg>Role</seg></tuv></tu>
+		<tu tuid='Rules'><tuv xml:lang="en"><seg>Rules</seg></tuv></tu>
+		<tu tuid='Rule'><tuv xml:lang="en"><seg>Rule</seg></tuv></tu>
+		<tu tuid='Resources'><tuv xml:lang="en"><seg>Resources</seg></tuv></tu>
+		<tu tuid='Resource'><tuv xml:lang="en"><seg>Resource</seg></tuv></tu>
+		
+		<tu tuid='Name'><tuv xml:lang="en"><seg>Name</seg></tuv></tu>
+  		<tu tuid='Display'><tuv xml:lang="en"><seg>Display</seg></tuv></tu>
+  		<tu tuid='Inherents'><tuv xml:lang="en"><seg>Inherents</seg></tuv></tu>
+  		<tu tuid='Modified'><tuv xml:lang="en"><seg>Modified</seg></tuv></tu>
+  		
+  		<tu tuid='Update Role'><tuv xml:lang="en"><seg>Update Role</seg></tuv></tu>
+  		<tu tuid='Delete Role'><tuv xml:lang="en"><seg>Delete Role</seg></tuv></tu>
+  		<tu tuid='Update Resource'><tuv xml:lang="en"><seg>Update Resource</seg></tuv></tu>
+  		<tu tuid='Delete Resource'><tuv xml:lang="en"><seg>Delete Resource</seg></tuv></tu>
+  		<tu tuid='Update Rule'><tuv xml:lang="en"><seg>Update Rule</seg></tuv></tu>
+  		<tu tuid='Delete Rule'><tuv xml:lang="en"><seg>Delete Rule</seg></tuv></tu>
+  		
+	</body>
+</tmx>

@@ -1,0 +1,77 @@
+<?php $appConfig = Zend_Registry::get('Application_Config'); ?>
+<?php $identity = Zend_Registry::get('identity'); ?>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <!-- Header -->
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse"
+			data-target="#bs-example-navbar-collapse-1">
+			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
+			<span class="icon-bar"></span> <span class="icon-bar"></span>
+		</button>
+		  <a class="navbar-brand" href="/"><?php echo $appConfig->name;?></a>
+	</div>
+	
+	 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+             <?php $count = 0; ?>
+             <?php foreach ($this->container as $page): ?>
+                <?php if( ! $page->isVisible() || !$this->navigation()->accept($page)) continue; ?>
+                <?php $hasChildren = $page->hasPages() ?>
+                    <?php if( ! $hasChildren): ?>
+                        <li class="dropdown">
+                            <a href="<?php echo $page->getHref() ?>"><?php echo $this->translate($page->getLabel()) ?></a>
+                        </li>
+                    <?php else: ?>
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo $page->getHref(); ?>"><i class="caret"></i>
+                                <span><?php echo $this->translate($page->getLabel()) ?></span>
+                            </a>
+                            <ul class="dropdown-menu" id="page_<?php echo $count; ?>">
+                            <li>
+                                <a href="<?php echo $page->getHref() ?>">
+                                    <?php echo $this->translate($page->getLabel()) ?>
+                                </a>
+                            </li>
+                            <?php foreach($page->getPages() as $child): ?>
+                                <?php if( ! $child->isVisible() || !$this->navigation()->accept($child)) continue; ?>
+                                <li>
+                                    <a tabindex="-1" href="<?php echo $child->getHref() ?>">
+                                        <?php echo $this->translate($child->getLabel()) ?>
+                                    </a>
+                                </li>
+                            <?php endforeach ?>
+                            </ul>
+                        </li>
+                 <?php endif ?>
+                 <?php $count++; ?>
+             <?php endforeach ?>
+        </ul>
+        
+        
+        <ul class="nav navbar-nav navbar-right">
+             <li>
+                <form class="navbar-form search-box" role="search" action="/search" method="post">
+                  <div class="form-group"> 
+                        <input type="text" class="form-control" placeholder="Search" name="search" id="search">
+                  </div>
+                  <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+             </li>
+            <li class="dropdown">
+			     <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                     <span class="glyphicon glyphicon-user"></span> <?php echo ucfirst($identity->username); ?> <i class="caret"></i>&nbsp; &nbsp;
+                 </a>
+     			 <ul class="dropdown-menu">
+     			 <?php if($identity->username != 'guest'):?>
+     				<li><a tabindex="-1" href="/auth/view">Profile</a></li>
+                    <li class="divider"></li>
+                    <li><a tabindex="-1" href="/auth/signout">Sign Out</a></li>
+     			 <?php else: ?>
+     				<li><a tabindex="-1" href="/auth/signin">Sign In</a></li>
+     			 <?php endif?>
+     			 </ul>
+ 		  </li>
+        </ul>
+	 </div>
+</nav>

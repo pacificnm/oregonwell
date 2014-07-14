@@ -1,0 +1,53 @@
+<div class="row">
+	<div class="col-md-4">
+        <?php echo $this->UserNav(); ?>
+    </div>
+	<div class="col-md-8">
+	   <div class="row">
+	       <div class="col-md-2">
+	           <b>Name</b>
+	       </div>
+	       <div class="col-md-10">
+	           <?php  echo $this->account->name;?>
+	       </div>
+	   </div>
+	   <div class="row">
+	       <div class="col-md-2">
+	           <b>Username</b>
+	       </div>
+	       <div class="col-md-10">
+	           <?php  echo $this->account->username;?>
+	       </div>
+	   </div>
+	   <div class="row">
+	       <div class="col-md-2">
+	           <b>Email</b>
+	       </div>
+	       <div class="col-md-10">
+	           <?php  echo $this->account->email;?>
+	       </div>
+	   </div>
+	   <div class="row">
+	       <div class="col-md-2">
+	           <b>Password</b>
+	       </div>
+	       <div class="col-md-10">
+	           *********
+	       </div>
+	   </div>
+	   <div class="row">
+	       <div class="col-md-2">
+	           <b>Role</b>
+	       </div>
+	       <div class="col-md-10">
+	           <?php echo $this->account->acl_role_display;?>
+	       </div>
+	   </div>
+	   <div class="row">
+	       <div class="col-md-12">
+	           <br />
+	       </div>
+	   </div>
+	   
+	</div>
+</div>
